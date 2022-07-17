@@ -19,7 +19,7 @@
 
                 <div class="col-md-6">
                     <center>
-                    <h3 class="mt-10">Gambar</h3>
+                    <img src="{{ asset('assets/img/image-header.png') }}" class="img-fluid" alt="Image">
                     </center>
                 </div>
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">

@@ -17,7 +17,7 @@ class CheckHeader
      */
     public function handle(Request $request, Closure $next)
     {
-        $get_header = $request->header('kotan-key');
+        $get_header = $request->header('kitasiapin-key');
 
         $check_header = Api_header::where('key', $get_header)->first();
         if ($check_header == null) {

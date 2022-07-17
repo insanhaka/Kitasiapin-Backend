@@ -12,6 +12,13 @@ class Api_AuthorizeController extends Controller
 {
     public function postlogin(Request $request)
     {
+        $check_user = User::where('email', $request->email)->count();
+        if ($check_user == 0) {
+            return response()->json([
+                'message' => 'empty',
+                'data' => 'Kamu belum terdaftar, Silahkan mendaftar terlebih dahulu',
+            ]);
+        }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
@@ -66,7 +73,7 @@ class Api_AuthorizeController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => 'error',
+                'message' => 'validation',
                 'data' => $validator->errors()->first()
             ]);
         }
@@ -74,7 +81,7 @@ class Api_AuthorizeController extends Controller
         foreach ($datauser as $user) {
             if ($user->email == $request->email) {
                 return response()->json([
-                    'message' => 'error',
+                    'message' => 'duplicated',
                     'data' => 'Email sudah terdaftar'
                 ]);
             }

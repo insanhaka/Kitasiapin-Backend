@@ -12,6 +12,7 @@ use App\Http\Controllers\Back_AuthController;
 use App\Http\Controllers\Back_DashboardController;
 use App\Http\Controllers\Back_PackageController;
 use App\Http\Controllers\Back_FeatureController;
+use App\Http\Controllers\Back_InvitationThemeController;
 
 // Super Admin Route
 use App\Http\Controllers\Super_DashboardController;
@@ -65,6 +66,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('fitur', Back_FeatureController::class);
     Route::get('/fitur/{id}/delete', [Back_FeatureController::class, 'delete'])->name('fitur.delete');
     Route::get('/fitur-serverside', [Back_FeatureController::class, 'serverside'])->name('fitur.serverside');
+
+    Route::resource('tema-undangan', Back_InvitationThemeController::class);
+    Route::get('/tema-undangan/{id}/delete', [Back_InvitationThemeController::class, 'delete'])->name('tema-undangan.delete');
+    Route::get('/tema-undangan/{id}/activation/{data}', [Back_InvitationThemeController::class, 'activation'])->name('tema-undangan.activation');
+    Route::get('/tema-undangan-serverside', [Back_InvitationThemeController::class, 'serverside'])->name('tema-undangan.serverside');
 
 });
 
