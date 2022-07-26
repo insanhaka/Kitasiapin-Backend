@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api_AuthorizeController;
+use App\Http\Controllers\Api_UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,6 @@ Route::group(['middleware' => 'checkHeader'], function() {
 
 Route::group(['middleware' => 'auth:api'], function () {
 
-    Route::get('/simple-data-user/{email}', [Api_UserController::class, 'simpledatauser']);
+    Route::get('/account-setting/{id}', [Api_UserController::class, 'getuser']);
 
 });

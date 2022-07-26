@@ -33,7 +33,7 @@ class Api_AuthorizeController extends Controller
                 return response()->json([
                     'message' => 'success',
                     'user' => $user->name,
-                    'token' => $user->name.'#'.$user->email.'#'.$token
+                    'token' => $user->name.'#'.$user->email.'#'.$user->id.'#'.$token
                 ]);
             }
             else
