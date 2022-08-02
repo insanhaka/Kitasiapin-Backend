@@ -28,5 +28,6 @@ Route::group(['middleware' => 'checkHeader'], function() {
 Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/account-setting/{id}', [Api_UserController::class, 'getuser']);
+    Route::post('/account-setting/{id}/update', [Api_UserController::class, 'updateuser']);
 
 });

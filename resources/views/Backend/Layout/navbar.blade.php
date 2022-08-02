@@ -28,11 +28,11 @@
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
                 <a href="javascript:;" class="btn" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 10px;">
                   <span class="d-sm-inline d-none">Hi, {{ Auth::user()->name }}</span>
-                  <span class="d-sm-inline d-none" id="breadmenu">=</span>
+                  <span class="d-sm-inline d-none" id="breadmenu"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" id="dropbreadmenu" aria-labelledby="dropdownMenuButton">
                     <li class="mb-2">
-                        <a class="dropdown-item border-radius-md" href="/profil/user">
+                        <a class="dropdown-item border-radius-md" href="/profile/admin/{{ Auth::user()->id }}">
                           <div class="d-flex py-1">
                             <div class="my-auto">
                               <img src="{{ asset('assets/img/icon/user.png') }}" width="20">

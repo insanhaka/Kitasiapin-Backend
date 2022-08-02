@@ -10,9 +10,10 @@ use App\Http\Controllers\Front_DashboardController;
 // Back-End Route
 use App\Http\Controllers\Back_AuthController;
 use App\Http\Controllers\Back_DashboardController;
-use App\Http\Controllers\Back_PackageController;
+use App\Http\Controllers\Back_UserController;
 use App\Http\Controllers\Back_FeatureController;
 use App\Http\Controllers\Back_InvitationThemeController;
+use App\Http\Controllers\Back_ProfileController;
 
 // Super Admin Route
 use App\Http\Controllers\Super_DashboardController;
@@ -56,12 +57,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     Route::get('/dashboard', [Back_DashboardController::class, 'index'])->name('control');
 
-    Route::resource('paket', Back_PackageController::class);
-    Route::get('/paket/{id}/delete', [Back_PackageController::class, 'delete'])->name('paket.delete');
-    Route::get('/paket/{id}/view', [Back_PackageController::class, 'show'])->name('paket.view');
-    Route::post('/paket/{id}/fitur', [Back_PackageController::class, 'fitur'])->name('paket.fitur');
-    Route::get('/paket/{id}/activation/{data}', [Back_PackageController::class, 'activation'])->name('paket.activation');
-    Route::get('/paket-serverside', [Back_PackageController::class, 'serverside'])->name('paket.serverside');
+    Route::resource('pengguna', Back_UserController::class);
+    Route::get('/pengguna/{id}/delete', [Back_UserController::class, 'delete'])->name('pengguna.delete');
+    Route::get('/pengguna/{id}/activation/{data}', [Back_UserController::class, 'activation'])->name('pengguna.activation');
+    Route::get('/pengguna-serverside', [Back_UserController::class, 'serverside'])->name('pengguna.serverside');
+
+    // Route::resource('paket', Back_PackageController::class);
+    // Route::get('/paket/{id}/delete', [Back_PackageController::class, 'delete'])->name('paket.delete');
+    // Route::get('/paket/{id}/view', [Back_PackageController::class, 'show'])->name('paket.view');
+    // Route::post('/paket/{id}/fitur', [Back_PackageController::class, 'fitur'])->name('paket.fitur');
+    // Route::get('/paket/{id}/activation/{data}', [Back_PackageController::class, 'activation'])->name('paket.activation');
+    // Route::get('/paket-serverside', [Back_PackageController::class, 'serverside'])->name('paket.serverside');
 
     Route::resource('fitur', Back_FeatureController::class);
     Route::get('/fitur/{id}/delete', [Back_FeatureController::class, 'delete'])->name('fitur.delete');
@@ -72,8 +78,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/tema-undangan/{id}/activation/{data}', [Back_InvitationThemeController::class, 'activation'])->name('tema-undangan.activation');
     Route::get('/tema-undangan-serverside', [Back_InvitationThemeController::class, 'serverside'])->name('tema-undangan.serverside');
 
+
+
 });
 
+// Profile route
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile/admin/{id}', [Back_ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/admin/{id}/edit', [Back_ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/admin/{id}/update', [Back_ProfileController::class, 'update']);
+});
 
 // Super Admin Route
 Route::group(['prefix' => 'super', 'middleware' => 'auth'], function() {

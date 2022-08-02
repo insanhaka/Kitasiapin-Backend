@@ -19,7 +19,7 @@
 
                 <div class="col-md-6">
                     <center>
-                    <img src="{{ asset('assets/img/image-header.png') }}" class="img-fluid" alt="Image">
+                    <img src="{{ asset('assets/img/image-header-new.png') }}" class="img-fluid" alt="Image">
                     </center>
                 </div>
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
